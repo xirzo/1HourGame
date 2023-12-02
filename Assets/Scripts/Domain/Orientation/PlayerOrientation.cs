@@ -9,7 +9,6 @@ namespace Game.Domain.Orientation
         public Vector2 ForwardDirection => _forwardDirection;
         [SerializeField, Min(0)] private float _raycastDistance = 5f;
         [SerializeField] private LayerMask _raycastLayers;
-        [SerializeField] private Camera _camera;
         private Transform _orientation;
         private IInput _inputs;
         private Vector2 _cursorPosition;
@@ -18,8 +17,6 @@ namespace Game.Domain.Orientation
         private void Awake()
         {
             TryGetComponent(out _inputs);
-            _orientation = transform;
-
             _orientation = transform;
         }
 
@@ -30,7 +27,7 @@ namespace Game.Domain.Orientation
 
         private void CalculateForwardDirection()
         {
-            _cursorPosition = _camera.ScreenToWorldPoint(_inputs.CursorPosition);
+            _cursorPosition = Camera.main.ScreenToWorldPoint(_inputs.CursorPosition);
             _forwardDirection = _cursorPosition - (Vector2)transform.position;
         }
 
