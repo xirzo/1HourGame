@@ -7,8 +7,8 @@ namespace Game.Domain.Movement
     [RequireComponent(typeof(IInput))]
     public class PlayerMovement : MonoBehaviour, IMoveable
     {
-        public Vector2 Velocity => _rigidbody.velocity;
-        public bool IsMoving => _rigidbody.velocity.magnitude > 0.01f;
+        public Vector2 Velocity => _rigidbody.linearVelocity;
+        public bool IsMoving => _rigidbody.linearVelocity.magnitude > 0.01f;
 
         [SerializeField, Min(0)] private float _speed = 5f;
 
@@ -32,7 +32,7 @@ namespace Game.Domain.Movement
         {
             _movementInput = _inputs.Movement;
             _movement = _movementInput * _speed * Time.deltaTime;
-            _rigidbody.velocity = _movement;
+            _rigidbody.linearVelocity = _movement;
         }
     }
 }

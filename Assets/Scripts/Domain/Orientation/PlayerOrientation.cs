@@ -47,6 +47,11 @@ namespace Game.Domain.Orientation
 
         private void OnDrawGizmos()
         {
+            if (Application.isPlaying == false)
+            {
+                return;
+            }
+                
             Gizmos.color = Color.red;
             Gizmos.DrawLine(_orientation.transform.position, _cursorPosition);
         }
